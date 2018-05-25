@@ -1,0 +1,70 @@
+@(user: User)
+
+@index {
+    <div class="row collapse">
+        <div class="large-12 columns panel">
+            <div class="row">
+                <div class="small-12 large-8 columns text-left">
+                    <h2>
+                        <span> user: @user.username</span>
+                    </h2>
+                </div>
+                <div class="small-12 large-4 columns text-right">
+                    <a class="button alert small" id="logout" href="@routes.HomeController.index()">Logout</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-12 columns">
+                    <div id="output"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-12 columns">
+                    <div class="row collapse">
+                        <div class="large-9 columns">
+                            <input class="w3-input w3-hover-grey" type="text" id="message" placeholder="Write something..."/>
+                        </div>
+                        <div class="large-3 columns">
+                            <button id="send" class="button postfix">Send</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}{
+    <script src="@routes.Assets.at("javascripts/webSocket.js")"></script>
+
+    <script type="text/javascript">
+        var load = function () {
+
+            //initialize the webSocket with the init method form the websocket.js file
+            initWebsocket('@routes.HomeController.websocket(user)');
+
+            $('#message').focus();
+
+            $('#send').click(function (e) {
+                var message =  $('#message').val();
+                if(message) {
+                    doSend(message);
+                    $('#message').val("");
+                }
+                $('#message').focus();
+            });
+
+            //also doSend the text when user hits return on the input
+            $('#message').keypress(function(e) {
+                if(e.which == 13) {
+                    $('#send').click();
+                }
+            });
+
+            $('#logout').click(function (e) {
+                performLogout();
+            });
+        };
+
+        $(window).on('load', load);
+    </script>
+}
+

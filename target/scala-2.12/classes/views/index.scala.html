@@ -1,0 +1,27 @@
+@(mainContent: Html)(javascriptContent: Html)
+<!DOCTYPE html>
+
+<html class="no-js" lang="en" >
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>!! SAD XAT !!</title>
+    <link rel="stylesheet" type="text/css" href="/assets/stylesheets/index.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="@routes.Assets.at("stylesheets/index.css")"></script>
+  </head>
+  <body class="color=black">
+    <div class="center row">
+      <div class="large-12 columns x-xat-panel">
+        <div class="row">
+          <div class="large-12 columns text-center">
+            <h1 class="panel"><a href="http://soft0.upc.edu/~francesc/assd/"> SAD </a></h1>
+          </div>
+        </div>
+        @mainContent
+      </div>
+    </div>
+      <script src="@routes.Assets.at("javascripts/jquery.js")"></script>
+      @javascriptContent
+  </body>
+</html>
